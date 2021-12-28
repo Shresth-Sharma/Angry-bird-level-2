@@ -12,6 +12,7 @@ var gameState = "onSling";
 var bg = "sprites/bg1.png";
 var img;
 var Birds = 2 ;
+var a1=0;
 function preload() {
     getTime();
      img=loadImage=("sprites/bg2.png")
@@ -77,12 +78,15 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if(a1===0){
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    a1=1;
 }
 function keyPressed(){
     if(keyCode===32 && Birds>=1){
@@ -90,6 +94,7 @@ function keyPressed(){
         bird.trajectory=[];
         Matter.Body.setPosition(bird.body,{x:200,y:266});
     slingshot.attach(bird.body);
+    a1=0
     }
 }
 
